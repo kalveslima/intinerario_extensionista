@@ -1,30 +1,28 @@
+// components/Layout.tsx
 "use client";
-import { useState, ReactNode, useEffect } from "react";
+import { useState, useEffect, ReactNode } from "react";
 import Link from "next/link";
 import { FaInstagram, FaEnvelope, FaWhatsapp } from "react-icons/fa";
-import Image from "next/image";
 
 interface LayoutProps {
   children: ReactNode;
 }
 
-interface CascadeItem {
+type CascadeItem = {
+  text: string;
   left: string;
   delay: string;
   duration: string;
-  phrase: string;
-}
+  size: string;
+};
 
-const phrases = [
+const PHRASES = [
   "Nada se perde, tudo se transforma",
   "Reciclar é reinventar",
-  "Consciência verde",
-  "O futuro é sustentável",
+  "Transformando lixo em arte",
+  "Tecnologia sustentável",
   "Reaproveitar é amar o planeta",
   "Pequenas ações, grandes mudanças",
-  "Sustentabilidade já",
-  "Transforme lixo em arte",
-  "Cuidar do planeta é cuidar de nós",
   "Reduzir, Reutilizar, Reciclar",
 ];
 
@@ -33,12 +31,14 @@ export default function Layout({ children }: LayoutProps) {
   const [cascadeItems, setCascadeItems] = useState<CascadeItem[]>([]);
   const [year, setYear] = useState<number | null>(null);
 
+  // Gera os itens da cascata apenas no cliente (evita hydration mismatch)
   useEffect(() => {
-    const items = [...Array(20)].map(() => ({
+    const items: CascadeItem[] = Array.from({ length: 18 }).map(() => ({
+      text: PHRASES[Math.floor(Math.random() * PHRASES.length)],
       left: `${Math.random() * 100}%`,
-      delay: `${Math.random() * 10}s`,
-      duration: `${5 + Math.random() * 10}s`,
-      phrase: phrases[Math.floor(Math.random() * phrases.length)],
+      delay: `${(Math.random() * 8).toFixed(2)}s`,
+      duration: `${(6 + Math.random() * 10).toFixed(2)}s`,
+      size: `${12 + Math.floor(Math.random() * 10)}px`,
     }));
     setCascadeItems(items);
 
@@ -46,68 +46,75 @@ export default function Layout({ children }: LayoutProps) {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col relative overflow-hidden bg-gray-900 text-white scroll-smooth">
-      {/* Fundo cascata */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        {cascadeItems.map((item, i) => (
+    <div className="min-h-screen flex flex-col bg-gray-800 text-white relative overflow-hidden">
+      {/* Cascata verde com blur (por trás do conteúdo) */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {cascadeItems.map((it, idx) => (
           <span
-            key={i}
-            className="absolute text-green-400 opacity-20 text-sm animate-cascade"
+            key={idx}
+            className="cascade-item"
             style={{
-              left: item.left,
-              animationDelay: item.delay,
-              animationDuration: item.duration,
+              left: it.left,
+              animationDelay: it.delay,
+              animationDuration: it.duration,
+              fontSize: it.size,
             }}
           >
-            {item.phrase}
+            {it.text}
           </span>
         ))}
       </div>
 
       {/* Header */}
-      <header className="w-full bg-gray-800/90 backdrop-blur-md text-white py-4 shadow-md fixed top-0 left-0 z-50 border-b border-green-500">
+      <header className="w-full bg-green-900 text-white py-3 shadow-md fixed top-0 left-0 z-50">
         <div className="max-w-4xl mx-auto flex justify-between items-center px-4">
-          <h1 className="text-xl sm:text-2xl font-bold text-yellow-400">
+          <h1 className="text-lg sm:text-2xl font-bold text-yellow-400">
             Intinerário Extensionista
           </h1>
 
           {/* Menu Desktop */}
-          <nav className="hidden md:flex space-x-2 flex-wrap items-center">
+          <nav className="hidden md:flex space-x-2 items-center">
             <Link
               href="/"
-              className="bg-green-600 px-3 py-2 rounded-xl hover:bg-green-500 transition flex items-center text-sm sm:text-base"
+              className="bg-green-800 px-3 py-2 rounded-xl hover:bg-green-700 transition text-sm"
             >
               Início
             </Link>
             <Link
               href="/sobre"
-              className="bg-green-600 px-3 py-2 rounded-xl hover:bg-green-500 transition flex items-center text-sm sm:text-base"
+              className="bg-green-800 px-3 py-2 rounded-xl hover:bg-green-700 transition text-sm"
             >
               Sobre Nós
             </Link>
             <Link
               href="/duvidas"
-              className="bg-green-600 px-3 py-2 rounded-xl hover:bg-green-500 transition flex items-center text-sm sm:text-base"
+              className="bg-green-800 px-3 py-2 rounded-xl hover:bg-green-700 transition text-sm"
             >
               Dúvidas
             </Link>
+
+            {/* Contatos (restaurados conforme você tinha) */}
             <a
               href="https://instagram.com/alvvezk"
               target="_blank"
-              className="bg-green-600 px-3 py-2 rounded-xl hover:text-yellow-400 transition flex items-center space-x-1 text-sm sm:text-base"
+              rel="noreferrer"
+              className="bg-green-800 px-3 py-2 rounded-xl hover:text-yellow-300 transition flex items-center space-x-2 text-sm"
             >
               <FaInstagram /> <span>Instagram</span>
             </a>
+
             <a
               href="mailto:k.alves1427@gmail.com"
-              className="bg-green-600 px-3 py-2 rounded-xl hover:text-yellow-400 transition flex items-center space-x-1 text-sm sm:text-base"
+              className="bg-green-800 px-3 py-2 rounded-xl hover:text-yellow-300 transition flex items-center space-x-2 text-sm"
             >
               <FaEnvelope /> <span>Gmail</span>
             </a>
+
             <a
               href="https://wa.me/5511954610490"
               target="_blank"
-              className="bg-green-600 px-3 py-2 rounded-xl hover:text-yellow-400 transition flex items-center space-x-1 text-sm sm:text-base"
+              rel="noreferrer"
+              className="bg-green-800 px-3 py-2 rounded-xl hover:text-yellow-300 transition flex items-center space-x-2 text-sm"
             >
               <FaWhatsapp /> <span>WhatsApp</span>
             </a>
@@ -115,8 +122,9 @@ export default function Layout({ children }: LayoutProps) {
 
           {/* Menu Mobile */}
           <button
-            className="md:hidden bg-green-600 p-2 rounded-lg hover:bg-green-500 transition"
-            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden bg-green-800 p-2 rounded-lg hover:bg-green-700 transition"
+            onClick={() => setMenuOpen((s) => !s)}
+            aria-label="Abrir menu"
           >
             {menuOpen ? "✖" : "☰"}
           </button>
@@ -124,92 +132,139 @@ export default function Layout({ children }: LayoutProps) {
 
         {/* Dropdown Mobile */}
         {menuOpen && (
-          <div className="flex flex-col md:hidden bg-gray-800 px-4 py-2 space-y-2 animate-slide-down border-t border-green-500">
+          <div className="md:hidden bg-green-900 px-4 py-3 space-y-2 animate-slide-down">
             <Link
               href="/"
-              className="bg-green-600 px-3 py-2 rounded-xl hover:bg-green-500 transition text-sm flex justify-center"
+              className="block bg-green-800 px-3 py-2 rounded-xl hover:bg-green-700 text-center"
             >
               Início
             </Link>
             <Link
               href="/sobre"
-              className="bg-green-600 px-3 py-2 rounded-xl hover:bg-green-500 transition text-sm flex justify-center"
+              className="block bg-green-800 px-3 py-2 rounded-xl hover:bg-green-700 text-center"
             >
               Sobre Nós
             </Link>
             <Link
               href="/duvidas"
-              className="bg-green-600 px-3 py-2 rounded-xl hover:bg-green-500 transition text-sm flex justify-center"
+              className="block bg-green-800 px-3 py-2 rounded-xl hover:bg-green-700 text-center"
             >
               Dúvidas
             </Link>
+
             <a
               href="https://instagram.com/alvvezk"
               target="_blank"
-              className="bg-green-600 px-3 py-2 rounded-xl hover:text-yellow-400 transition flex items-center justify-center space-x-2 text-sm"
+              rel="noreferrer"
+              className="block bg-green-800 px-3 py-2 rounded-xl hover:bg-pink-500 text-center"
             >
-              <FaInstagram /> <span>Instagram</span>
+              Instagram
             </a>
             <a
               href="mailto:k.alves1427@gmail.com"
-              className="bg-green-600 px-3 py-2 rounded-xl hover:text-yellow-400 transition flex items-center justify-center space-x-2 text-sm"
+              className="block bg-green-800 px-3 py-2 rounded-xl hover:bg-yellow-400 text-center"
             >
-              <FaEnvelope /> <span>Gmail</span>
+              Gmail
             </a>
             <a
               href="https://wa.me/5511954610490"
               target="_blank"
-              className="bg-green-600 px-3 py-2 rounded-xl hover:text-yellow-400 transition flex items-center justify-center space-x-2 text-sm"
+              rel="noreferrer"
+              className="block bg-green-800 px-3 py-2 rounded-xl hover:bg-green-500 text-center"
             >
-              <FaWhatsapp /> <span>WhatsApp</span>
+              WhatsApp
             </a>
           </div>
         )}
       </header>
 
-      {/* Conteúdo */}
-      <main className="flex-1 mt-28 max-w-4xl mx-auto px-4 space-y-6 relative z-10 text-gray-100">
+      {/* Conteúdo (children) */}
+      <main className="flex-1 mt-20 max-w-4xl mx-auto px-4 py-6 relative z-10">
         {children}
       </main>
 
       {/* Footer */}
-      <footer className="w-full bg-gray-800 text-center py-4 text-sm border-t border-green-500 text-yellow-400 relative z-10">
+      <footer className="w-full bg-gray-900/60 text-center py-4 text-sm border-t border-green-700 text-yellow-300 relative z-10">
         © {year ?? ""} Intinerário Extensionista
       </footer>
 
-      <style jsx>{`
-        html {
-          scroll-behavior: smooth;
+      {/* Estilos globais para cascata e animações (modal também usa essas classes) */}
+      <style jsx global>{`
+        /* cascata (cada .cascade-item tem inline duration/delay/left/font-size) */
+        .cascade-item {
+          position: absolute;
+          top: -8vh;
+          color: #34d399; /* green-400 */
+          opacity: 0.18;
+          white-space: nowrap;
+          filter: blur(4px);
+          pointer-events: none;
+          user-select: none;
+          transform: translateY(0);
+          will-change: transform, opacity;
+          animation-name: cascade;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
         }
-        .animate-slide-down {
-          animation: slideDown 0.3s ease forwards;
+
+        @keyframes cascade {
+          0% {
+            transform: translateY(-8vh);
+            opacity: 0.25;
+          }
+          10% {
+            opacity: 0.22;
+          }
+          100% {
+            transform: translateY(120vh);
+            opacity: 0;
+          }
         }
+
+        /* pequeno slide-down para menu mobile */
         @keyframes slideDown {
           0% {
             opacity: 0;
-            transform: translateY(-10px);
+            transform: translateY(-8px);
           }
           100% {
             opacity: 1;
             transform: translateY(0);
           }
         }
-        .animate-cascade {
-          animation-name: cascade;
-          animation-timing-function: linear;
-          animation-iteration-count: infinite;
+        .animate-slide-down {
+          animation: slideDown 0.22s ease-out forwards;
         }
-        @keyframes cascade {
+
+        /* Modal animations: slideUp (mobile) e zoomIn (desktop) */
+        @keyframes zoomIn {
           0% {
-            top: -5%;
             opacity: 0;
-          }
-          10% {
-            opacity: 0.3;
+            transform: scale(0.96);
           }
           100% {
-            top: 110%;
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        @keyframes slideUp {
+          0% {
             opacity: 0;
+            transform: translateY(30px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        /* .modal-content aplica slideUp por padrão; em telas >=768px usa zoomIn */
+        .modal-content {
+          animation: slideUp 0.32s ease-out forwards;
+        }
+        @media (min-width: 768px) {
+          .modal-content {
+            animation: zoomIn 0.26s ease-out forwards;
           }
         }
       `}</style>
