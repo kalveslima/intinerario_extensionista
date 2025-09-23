@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import Layout from "./components/Layout";
-import { FaPhoneAlt, FaEnvelope, FaInstagram } from "react-icons/fa";
 
 const titles = [
   "Nada se perde, tudo se transforma",
@@ -9,6 +8,7 @@ const titles = [
   "Transformando lixo em arte",
   "Tecnologia sustentável",
   "Reaproveitar é amar o planeta",
+
 ];
 
 const descriptions = [
@@ -17,14 +17,8 @@ const descriptions = [
   "Artesanato feito a partir de materiais reciclados.",
   "Projetos de tecnologia sustentável que impactam o planeta.",
   "Pequenas ações que fazem grandes mudanças.",
-];
-
-const cascata = [
-  "リサイクルは未来への贈り物",
-  "廃棄物から新しい命へ",
-  "環境を守る小さな一歩",
-  "テクノロジーを持続可能に",
-  "無駄にしない、地球を守る",
+  "top 3 animes, berserk, re zero, attack on titan",
+ 
 ];
 
 export default function Home() {
@@ -34,23 +28,17 @@ export default function Home() {
 
   return (
     <Layout>
-      {/* Cascata de frases */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        <div className="absolute animate-[marquee_25s_linear_infinite] whitespace-nowrap text-green-600/20 text-4xl sm:text-6xl font-bold">
-          {cascata.join(" • ")}
-        </div>
-      </div>
-
       <h2 className="relative z-10 text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-center text-yellow-300">
-        Itinerário Extensionista
+        Kintsugi
       </h2>
 
+      {/* Grid de cards */}
       <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         {titles.map((title, idx) => (
           <article
             key={idx}
             onClick={() => setSelected(idx)}
-            className="bg-white/20 backdrop-saturate-150 text-gray-900 rounded-xl shadow-md overflow-hidden transform transition-transform hover:scale-105 hover:shadow-xl cursor-pointer"
+            className="bg-white/20 backdrop-saturate-150 text-black-900 rounded-xl shadow-md overflow-hidden transform transition-transform hover:scale-105 hover:shadow-xl cursor-pointer"
             role="button"
             aria-label={`Abrir detalhes: ${title}`}
           >
@@ -64,10 +52,10 @@ export default function Home() {
             </div>
 
             <div className="p-3 sm:p-4">
-              <h3 className="text-lg sm:text-xl font-semibold mb-1 text-green-800">
+              <h3 className="text-lg sm:text-xl font-semibold mb-1 text-yellow-400">
                 {title}
               </h3>
-              <p className="text-gray-700 text-sm sm:text-base">
+              <p className="text-white-700 text-sm sm:text-base">
                 {descriptions[idx]}
               </p>
             </div>
@@ -109,34 +97,13 @@ export default function Home() {
               <h3 className="text-lg sm:text-2xl font-bold text-green-800 mb-2">
                 {titles[selected]}
               </h3>
-              <p className="text-gray-700 text-sm sm:text-base">
+              <p className="text-black-700 text-sm sm:text-base">
                 {descriptions[selected]}
               </p>
             </div>
           </div>
         </div>
       )}
-
-      {/* Footer */}
-      <footer className="relative z-10 mt-8 sm:mt-12 text-center text-sm sm:text-base text-gray-300">
-        <p className="mb-3 font-semibold text-green-300">Entre em contato</p>
-        <div className="flex justify-center gap-6 text-2xl sm:text-3xl text-green-300">
-          <a href="tel:+5511954610490" aria-label="Telefone">
-            <FaPhoneAlt />
-          </a>
-          <a href="mailto:k.alves1427@gmail.com" aria-label="E-mail">
-            <FaEnvelope />
-          </a>
-          <a
-            href="https://instagram.com/alvvezk"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Instagram"
-          >
-            <FaInstagram />
-          </a>
-        </div>
-      </footer>
     </Layout>
   );
 }
