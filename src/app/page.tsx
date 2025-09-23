@@ -19,24 +19,38 @@ const descriptions = [
   "Pequenas ações que fazem grandes mudanças.",
 ];
 
+const cascata = [
+  "リサイクルは未来への贈り物",
+  "廃棄物から新しい命へ",
+  "環境を守る小さな一歩",
+  "テクノロジーを持続可能に",
+  "無駄にしない、地球を守る",
+];
+
 export default function Home() {
   const [selected, setSelected] = useState<number | null>(null);
 
-  // Pega imagens locais de /public/images
   const getImg = (idx: number) => `/images/post${idx + 1}.jpg`;
 
   return (
     <Layout>
-      <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-center text-yellow-300">
+      {/* Cascata de frases */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute animate-[marquee_25s_linear_infinite] whitespace-nowrap text-green-600/20 text-4xl sm:text-6xl font-bold">
+          {cascata.join(" • ")}
+        </div>
+      </div>
+
+      <h2 className="relative z-10 text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-center text-yellow-300">
         Itinerário Extensionista
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+      <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         {titles.map((title, idx) => (
           <article
             key={idx}
             onClick={() => setSelected(idx)}
-            className="bg-white text-gray-900 rounded-xl shadow-md overflow-hidden transform transition-transform hover:scale-105 hover:shadow-xl cursor-pointer"
+            className="bg-white/20 backdrop-saturate-150 text-gray-900 rounded-xl shadow-md overflow-hidden transform transition-transform hover:scale-105 hover:shadow-xl cursor-pointer"
             role="button"
             aria-label={`Abrir detalhes: ${title}`}
           >
@@ -61,7 +75,7 @@ export default function Home() {
         ))}
       </div>
 
-      {/* Pop-up modal */}
+      {/* Pop-up */}
       {selected !== null && (
         <div
           className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
@@ -103,8 +117,8 @@ export default function Home() {
         </div>
       )}
 
-      {/* Footer/contact curto (mobile-first) */}
-      <footer className="mt-8 sm:mt-12 text-center text-sm sm:text-base text-gray-300">
+      {/* Footer */}
+      <footer className="relative z-10 mt-8 sm:mt-12 text-center text-sm sm:text-base text-gray-300">
         <p className="mb-3 font-semibold text-green-300">Entre em contato</p>
         <div className="flex justify-center gap-6 text-2xl sm:text-3xl text-green-300">
           <a href="tel:+5511954610490" aria-label="Telefone">
