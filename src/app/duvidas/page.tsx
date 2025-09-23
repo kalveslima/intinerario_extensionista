@@ -1,9 +1,9 @@
 import Layout from "../components/Layout";
 
-export default function Sobre() {
+export default function Duvidas() {
   return (
     <Layout>
-      <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-center">Sobre Nós</h2>
+      <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-center">Duvidas</h2>
       <div className="space-y-4">
         <p className="bg-white p-4 rounded-2xl shadow-md text-gray-700 text-sm sm:text-base">
           Este projeto tem como objetivo mostrar as atividades do extensionista.

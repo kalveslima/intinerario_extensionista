@@ -22,9 +22,8 @@ const descriptions = [
 export default function Home() {
   const [selected, setSelected] = useState<number | null>(null);
 
-  // URLs externas do Unsplash por palavra-chave (mais confiáveis sem precisar configurar next.config)
-  const getImg = (idx: number) =>
-    `https://source.unsplash.com/800x600/?recycle,computer,electronics&sig=${idx}`;
+  // Pega imagens locais de /public/images
+  const getImg = (idx: number) => `/images/post${idx + 1}.jpg`;
 
   return (
     <Layout>
