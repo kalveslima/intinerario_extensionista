@@ -28,17 +28,17 @@ export default function Home() {
 
   return (
     <Layout>
-      <h2 className="relative z-10 text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-center text-yellow-300">
+      <h2 className="relative z-20 text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-center text-yellow-300">
         Kintsugi
       </h2>
 
       {/* Grid de cards */}
-      <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+      <div className="relative z-1 grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4">
         {titles.map((title, idx) => (
           <article
             key={idx}
             onClick={() => setSelected(idx)}
-            className="bg-white/20 backdrop-saturate-150 text-black-900 rounded-xl shadow-md overflow-hidden transform transition-transform hover:scale-105 hover:shadow-xl cursor-pointer"
+            className="bg-white/20 backdrop-saturate-150 text-black-900 rounded-xl shadow-md overflow-hidden transform transition-transform hover:scale-150 hover:shadow-xl cursor-pointer"
             role="button"
             aria-label={`Abrir detalhes: ${title}`}
           >
@@ -70,7 +70,7 @@ export default function Home() {
           onClick={() => setSelected(null)}
         >
           <div
-            className="modal-content bg-white rounded-2xl shadow-2xl max-w-md w-full relative"
+            className="modal-content bg-white rounded-4xl shadow-4xl max-w-md w-full relative"
             onClick={(e) => e.stopPropagation()}
             role="dialog"
             aria-modal="true"
@@ -84,7 +84,7 @@ export default function Home() {
               ✕
             </button>
 
-            <div className="w-full h-48 sm:h-64 overflow-hidden rounded-t-2xl">
+            <div className="w-full h-60 sm:h-75 overflow-hidden rounded-t-2xl">
               <img
                 src={getImg(selected)}
                 alt={titles[selected]}
