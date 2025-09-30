@@ -8,7 +8,7 @@ interface LayoutProps {
 }
 
 type CascadeItem = {
-  content: JSX.Element;
+  content: ReactNode;
   left: string;
   delay: string;
   duration: string;
