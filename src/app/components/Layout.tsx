@@ -1,14 +1,14 @@
 "use client";
 import { useState, useEffect, ReactNode } from "react";
 import Link from "next/link";
-import { FaInstagram, FaEnvelope, FaWhatsapp } from "react-icons/fa";
+import { FaInstagram, FaEnvelope, FaWhatsapp, FaRecycle, FaLeaf, FaGlobe } from "react-icons/fa";
 
 interface LayoutProps {
   children: ReactNode;
 }
 
 type CascadeItem = {
-  text: string;
+  content: JSX.Element;
   left: string;
   delay: string;
   duration: string;
@@ -25,26 +25,33 @@ const PHRASES = [
   "Reduzir, Reutilizar, Reciclar",
 ];
 
+const ICONS = [<FaRecycle />, <FaLeaf />, <FaGlobe />];
+
 export default function Layout({ children }: LayoutProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [cascadeItems, setCascadeItems] = useState<CascadeItem[]>([]);
   const [year, setYear] = useState<number | null>(null);
 
   useEffect(() => {
-    const items: CascadeItem[] = Array.from({ length: 18 }).map(() => ({
-      text: PHRASES[Math.floor(Math.random() * PHRASES.length)],
-      left: `${Math.random() * 100}%`,
-      delay: `${(Math.random() * 8).toFixed(2)}s`,
-      duration: `${(6 + Math.random() * 10).toFixed(2)}s`,
-      size: `${12 + Math.floor(Math.random() * 10)}px`,
-    }));
+    const items: CascadeItem[] = Array.from({ length: 20 }).map(() => {
+      const isIcon = Math.random() > 0.6; // 40% ícones, 60% frases
+      return {
+        content: isIcon
+          ? ICONS[Math.floor(Math.random() * ICONS.length)]
+          : <>{PHRASES[Math.floor(Math.random() * PHRASES.length)]}</>,
+        left: `${Math.random() * 100}%`,
+        delay: `${(Math.random() * 8).toFixed(2)}s`,
+        duration: `${(6 + Math.random() * 10).toFixed(2)}s`,
+        size: `${14 + Math.floor(Math.random() * 14)}px`,
+      };
+    });
     setCascadeItems(items);
     setYear(new Date().getFullYear());
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-800 text-white relative overflow-hidden">
-      {/* Cascata verde sem blur */}
+    <div className="min-h-screen flex flex-col bg-gray-900 text-white relative overflow-hidden scroll-smooth">
+      {/* Cascata */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {cascadeItems.map((it, idx) => (
           <span
@@ -57,40 +64,39 @@ export default function Layout({ children }: LayoutProps) {
               fontSize: it.size,
             }}
           >
-            {it.text}
+            {it.content}
           </span>
         ))}
       </div>
 
-      {/* Header transparente */}
-      <header className="w-full bg-transparent text-white py-3 shadow-md fixed top-0 left-0 z-50">
-        <div className="max-w-4xl mx-auto flex justify-between items-center px-4">
-          <h1 className="text-lg sm:text-2xl font-bold text-yellow-400">
-            Kintsugi
+      {/* Header */}
+      <header className="w-full bg-transparent text-white py-4 shadow-md fixed top-0 left-0 z-50">
+        <div className="max-w-5xl mx-auto flex justify-between items-center px-6">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-green-400 tracking-wide">
+            TechArt
           </h1>
 
-          <nav className="hidden md:flex space-x-2 items-center">
-            <Link href="/" className="px-3 py-2 rounded-xl hover:bg-green-700 transition text-sm">
+          <nav className="hidden md:flex space-x-4 items-center text-base">
+            <Link href="/" className="px-4 py-2 rounded-lg hover:bg-green-700 transition">
               Início
             </Link>
-            <Link href="/sobre" className="px-3 py-2 rounded-xl hover:bg-green-700 transition text-sm">
+            <Link href="/sobre" className="px-4 py-2 rounded-lg hover:bg-green-700 transition">
               Sobre Nós
             </Link>
-            <Link href="/duvidas" className="px-3 py-2 rounded-xl hover:bg-green-700 transition text-sm">
+            <Link href="/duvidas" className="px-4 py-2 rounded-lg hover:bg-green-700 transition">
               Dúvidas
             </Link>
-
             <a
               href="https://instagram.com/alvvezk"
               target="_blank"
               rel="noreferrer"
-              className="px-3 py-2 rounded-xl hover:text-yellow-300 transition flex items-center space-x-2 text-sm"
+              className="flex items-center space-x-2 hover:text-green-300 transition"
             >
               <FaInstagram /> <span>Instagram</span>
             </a>
             <a
               href="mailto:k.alves1427@gmail.com"
-              className="px-3 py-2 rounded-xl hover:text-yellow-300 transition flex items-center space-x-2 text-sm"
+              className="flex items-center space-x-2 hover:text-green-300 transition"
             >
               <FaEnvelope /> <span>Gmail</span>
             </a>
@@ -98,7 +104,7 @@ export default function Layout({ children }: LayoutProps) {
               href="https://wa.me/5511954610490"
               target="_blank"
               rel="noreferrer"
-              className="px-3 py-2 rounded-xl hover:text-yellow-300 transition flex items-center space-x-2 text-sm"
+              className="flex items-center space-x-2 hover:text-green-300 transition"
             >
               <FaWhatsapp /> <span>WhatsApp</span>
             </a>
@@ -115,35 +121,24 @@ export default function Layout({ children }: LayoutProps) {
         </div>
 
         {menuOpen && (
-          <div className="md:hidden bg-green-900 px-4 py-3 space-y-2 animate-slide-down">
-            <Link href="/" className="block px-3 py-2 rounded-xl hover:bg-green-700 text-center">
-              Início
-            </Link>
-            <Link href="/sobre" className="block px-3 py-2 rounded-xl hover:bg-green-700 text-center">
-              Sobre Nós
-            </Link>
-            <Link href="/duvidas" className="block px-3 py-2 rounded-xl hover:bg-green-700 text-center">
-              Dúvidas
-            </Link>
-            <a href="https://instagram.com/alvvezk" target="_blank" rel="noreferrer" className="block px-3 py-2 rounded-xl hover:bg-pink-500 text-center">
-              Instagram
-            </a>
-            <a href="mailto:k.alves1427@gmail.com" className="block px-3 py-2 rounded-xl hover:bg-yellow-400 text-center">
-              Gmail
-            </a>
-            <a href="https://wa.me/5511954610490" target="_blank" rel="noreferrer" className="block px-3 py-2 rounded-xl hover:bg-green-500 text-center">
-              WhatsApp
-            </a>
+          <div className="md:hidden bg-green-900 px-6 py-4 space-y-3 animate-slide-down text-center">
+            <Link href="/" className="block hover:bg-green-700 py-2 rounded-lg">Início</Link>
+            <Link href="/sobre" className="block hover:bg-green-700 py-2 rounded-lg">Sobre Nós</Link>
+            <Link href="/duvidas" className="block hover:bg-green-700 py-2 rounded-lg">Dúvidas</Link>
+            <a href="https://instagram.com/alvvezk" target="_blank" rel="noreferrer" className="block hover:text-pink-400">Instagram</a>
+            <a href="mailto:k.alves1427@gmail.com" className="block hover:text-yellow-400">Gmail</a>
+            <a href="https://wa.me/5511954610490" target="_blank" rel="noreferrer" className="block hover:text-green-400">WhatsApp</a>
           </div>
         )}
       </header>
 
-      {/* Área de conteúdo das páginas */}
-      <main className="flex-1 mt-20 max-w-4xl mx-auto px-4 py-6 relative z-10">
+      {/* Conteúdo */}
+      <main className="flex-1 mt-28 max-w-5xl mx-auto px-6 py-10 relative z-10">
         {children}
       </main>
 
-      <footer className="w-full bg-gray-900/60 text-center py-4 text-sm border-t border-green-700 text-yellow-300 relative z-10">
+      {/* Rodapé */}
+      <footer className="w-full bg-gray-950/70 text-center py-5 text-sm border-t border-green-700 text-green-400 relative z-10">
         © {year ?? ""} Kuhakuuu. Todos os direitos reservados.
       </footer>
 
@@ -151,13 +146,11 @@ export default function Layout({ children }: LayoutProps) {
         .cascade-item {
           position: absolute;
           top: -8vh;
-          color: #34d399;
-          opacity: 0.18;
+          color: #22c55e;
+          opacity: 0.25;
           white-space: nowrap;
           pointer-events: none;
           user-select: none;
-          transform: translateY(0);
-          will-change: transform, opacity;
           animation-name: cascade;
           animation-timing-function: linear;
           animation-iteration-count: infinite;
@@ -166,7 +159,7 @@ export default function Layout({ children }: LayoutProps) {
         @keyframes cascade {
           0% {
             transform: translateY(-8vh);
-            opacity: 0.25;
+            opacity: 0.3;
           }
           100% {
             transform: translateY(120vh);
@@ -185,36 +178,7 @@ export default function Layout({ children }: LayoutProps) {
           }
         }
         .animate-slide-down {
-          animation: slideDown 0.22s ease-out forwards;
-        }
-
-        @keyframes zoomIn {
-          0% {
-            opacity: 0;
-            transform: scale(0.96);
-          }
-          100% {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-        @keyframes slideUp {
-          0% {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .modal-content {
-          animation: slideUp 0.32s ease-out forwards;
-        }
-        @media (min-width: 768px) {
-          .modal-content {
-            animation: zoomIn 0.26s ease-out forwards;
-          }
+          animation: slideDown 0.25s ease-out forwards;
         }
       `}</style>
     </div>
