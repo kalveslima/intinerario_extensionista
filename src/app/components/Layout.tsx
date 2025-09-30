@@ -25,7 +25,7 @@ const PHRASES = [
   "Reduzir, Reutilizar, Reciclar",
 ];
 
-const ICONS = [<FaRecycle />, <FaLeaf />, <FaGlobe />];
+const ICONS = [<FaRecycle key="recycle" />, <FaLeaf key="leaf" />, <FaGlobe key="globe" />];
 
 export default function Layout({ children }: LayoutProps) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -33,12 +33,14 @@ export default function Layout({ children }: LayoutProps) {
   const [year, setYear] = useState<number | null>(null);
 
   useEffect(() => {
-    const items: CascadeItem[] = Array.from({ length: 20 }).map(() => {
+    const items: CascadeItem[] = Array.from({ length: 20 }).map((_, idx) => {
       const isIcon = Math.random() > 0.6; // 40% ícones, 60% frases
+      const content = isIcon
+        ? ICONS[Math.floor(Math.random() * ICONS.length)]
+        : <span key={`phrase-${idx}`}>{PHRASES[Math.floor(Math.random() * PHRASES.length)]}</span>;
+
       return {
-        content: isIcon
-          ? ICONS[Math.floor(Math.random() * ICONS.length)]
-          : <>{PHRASES[Math.floor(Math.random() * PHRASES.length)]}</>,
+        content,
         left: `${Math.random() * 100}%`,
         delay: `${(Math.random() * 8).toFixed(2)}s`,
         duration: `${(6 + Math.random() * 10).toFixed(2)}s`,
@@ -55,7 +57,7 @@ export default function Layout({ children }: LayoutProps) {
       <div className="absolute inset-0 z-0 pointer-events-none">
         {cascadeItems.map((it, idx) => (
           <span
-            key={idx}
+            key={`cascade-${idx}`}
             className="cascade-item"
             style={{
               left: it.left,
