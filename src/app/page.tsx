@@ -5,28 +5,28 @@ import { FaRecycle, FaLeaf, FaGlobe } from "react-icons/fa";
 
 const items = [
   {
-    title: "Nada se perde, tudo se transforma",
-    description: "Mostrando como cada peça pode ter uma nova vida.",
+    title: "Quem somos ?",
+    description: "Somos a TechArt, uma ONG que coleta e armazena peças nao funcionais de computadores e celulares.",
     icon: <FaRecycle className="text-green-400 w-6 h-6 sm:w-8 sm:h-8" />,
   },
   {
-    title: "Reciclar é reinventar",
-    description: "Cada componente reaproveitado conta uma nova história.",
+    title: "Oque fazemos ?",
+    description: "Cada componente reaproveitado conta uma nova história. fazemos tratamentos nas peças doadas e as trasnformamos o lixo em joias. Assim fazendo um trabalho incrivelmente importante de reciclagem.",
     icon: <FaLeaf className="text-green-400 w-6 h-6 sm:w-8 sm:h-8" />,
   },
   {
-    title: "Transformando lixo em arte",
-    description: "Artesanato feito a partir de materiais reciclados.",
+    title: "Quem ajudamos ?",
+    description: "AJudamos mulheres em situação de vulnerabilidade social a terem uma nova fonte de renda.",
     icon: <FaGlobe className="text-green-400 w-6 h-6 sm:w-8 sm:h-8" />,
   },
   {
-    title: "Tecnologia sustentável",
-    description: "Projetos de tecnologia sustentável que impactam o planeta.",
+    title: "Como doar ?",
+    description: "Entre em contato conosco por email ou whatsapp e agende uma coleta. estara falando com um de nossos membros, fique tranquilo a coleta e feita dentro da sua instituição de ensino.",
     icon: <FaRecycle className="text-green-400 w-6 h-6 sm:w-8 sm:h-8" />,
   },
   {
-    title: "Reaproveitar é amar o planeta",
-    description: "Pequenas ações que fazem grandes mudanças.",
+    title: "Duvidas?",
+    description: "entre na sessão de duvidas abrindo menu e clicando em duvidas, la respondemos as perguntas mais frequentes.",
     icon: <FaLeaf className="text-green-400 w-6 h-6 sm:w-8 sm:h-8" />,
   },
 ];
@@ -34,9 +34,7 @@ const items = [
 export default function Home() {
   return (
     <Layout>
-      <h2 className="relative z-20 text-xl sm:text-2xl md:text-3xl font-bold mb-8 text-center text-green-300">
-        colocar alguma frase
-      </h2>
+      
 
       {/* Grid de blocos minimalistas */}
       <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">

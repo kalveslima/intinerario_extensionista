@@ -23,6 +23,9 @@ const PHRASES = [
   "Reaproveitar é amar o planeta",
   "Pequenas ações, grandes mudanças",
   "Reduzir, Reutilizar, Reciclar",
+  "Inovação verde",
+  "top animes : berserk evangelino cowboy bebop death note",
+  "feito por KUHAKU.",
 ];
 
 const ICONS = [<FaRecycle key="recycle" />, <FaLeaf key="leaf" />, <FaGlobe key="globe" />];
@@ -114,7 +117,7 @@ export default function Layout({ children }: LayoutProps) {
 
           {/* Menu Mobile */}
           <button
-            className="md:hidden bg-green-800 p-2 rounded-lg hover:bg-green-700 transition"
+            className="md:hidden bg-green-800 p-2 rounded-lg hover:bg-green-700 transition top-0"
             onClick={() => setMenuOpen((s) => !s)}
             aria-label="Abrir menu"
           >
@@ -141,7 +144,7 @@ export default function Layout({ children }: LayoutProps) {
 
       {/* Rodapé */}
       <footer className="w-full bg-gray-950/70 text-center py-5 text-sm border-t border-green-700 text-green-400 relative z-10">
-        © {year ?? ""} Kuhakuuu. Todos os direitos reservados.
+        © {year ?? ""} TechArt. Todos os direitos reservados.
       </footer>
 
       <style jsx global>{`

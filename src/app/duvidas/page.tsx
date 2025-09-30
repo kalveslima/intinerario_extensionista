@@ -10,13 +10,17 @@ export default function Duvidas() {
 
       <div className="space-y-4">
         <p className="bg-white p-4 rounded-2xl shadow-md text-gray-700 text-sm sm:text-base">
-          Nosso projeto busca dar uma nova vida às peças de computadores,
-          transformando em arte, bijuterias e objetos sustentáveis.
+          como doar? Entre em contato conosco por email ou whatsapp e agende uma coleta. estara falando com um de nossos membros, fique tranquilo a coleta e feita dentro da sua instituição de ensino.
+          
+          minhas peças nao serao revendidas ? De forma alguma, todas as peças doadas são
+          reaproveitadas em nossas joias ou recicladas de forma responsável.
+
+          quem ajudamos ? AJudamos mulheres em situação de vulnerabilidade social a terem uma nova fonte de renda.
         </p>
 
         <p className="bg-white p-4 rounded-2xl shadow-md text-gray-700 text-sm sm:text-base">
-          Trabalhamos com design inovador, inspirado no Kintsugi japonês — nada
-          se perde, tudo se transforma.
+          Se tiver mais dúvidas, não hesite em nos contatar. Estamos aqui para ajudar! compartilhe nosso projeto atraves do QRcode
+
         </p>
 
         {/* Imagem + frase centralizadas */}
