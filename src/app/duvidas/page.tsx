@@ -10,7 +10,7 @@ export default function Duvidas() {
 
       <div className="space-y-4">
         <p className="bg-white p-4 rounded-2xl shadow-md text-gray-700 text-sm sm:text-base">
-          como doar? Entre em contato conosco por email ou whatsapp e agende uma coleta. estara falando com um de nossos membros, fique tranquilo a coleta e feita dentro da sua instituição de ensino.
+          como doar? Entre em contato conosco por email, instagram ou whatsapp  agende uma coleta. estara falando com um de nossos membros, fique tranquilo a coleta e feita dentro da sua instituição de ensino.
           
           minhas peças nao serao revendidas ? De forma alguma, todas as peças doadas são
           reaproveitadas em nossas joias ou recicladas de forma responsável.

@@ -15,7 +15,7 @@ export default function Sobre() {
         </p>
         <p className="bg-white p-4 rounded-2xl shadow-md text-gray-700 text-sm sm:text-base">
           
-          Se tiver mais dúvidas, não hesite em nos contatar. Estamos aqui para ajudar! compartilhe nosso projeto atarves do QRcode !
+          Se tiver mais dúvidas, não hesite em nos contatar. Estamos aqui para ajudar! compartilhe nosso projeto atraves do QRcode !
         </p>
       </div>
       

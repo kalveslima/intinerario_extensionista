@@ -11,7 +11,7 @@ const items = [
   },
   {
     title: "Oque fazemos ?",
-    description: "Cada componente reaproveitado conta uma nova história. fazemos tratamentos nas peças doadas e as trasnformamos o lixo em joias. Assim fazendo um trabalho incrivelmente importante de reciclagem.",
+    description: "Cada componente reaproveitado conta uma nova história. fazemos tratamentos nas peças doadas e as transformamos o lixo em joias. Assim fazendo um trabalho incrivelmente importante de reciclagem.",
     icon: <FaLeaf className="text-green-400 w-6 h-6 sm:w-8 sm:h-8" />,
   },
   {
@@ -21,7 +21,7 @@ const items = [
   },
   {
     title: "Como doar ?",
-    description: "Entre em contato conosco por email ou whatsapp e agende uma coleta. estara falando com um de nossos membros, fique tranquilo a coleta e feita dentro da sua instituição de ensino.",
+    description: "Entre em contato conosco por email, instagram ou whatsapp e agende uma coleta. estara falando com um de nossos membros, fique tranquilo a coleta e feita dentro da sua instituição de ensino.",
     icon: <FaRecycle className="text-green-400 w-6 h-6 sm:w-8 sm:h-8" />,
   },
   {
