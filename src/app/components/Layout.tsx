@@ -91,6 +91,17 @@ export default function Layout({ children }: LayoutProps) {
             <Link href="/duvidas" className="px-4 py-2 rounded-lg hover:bg-green-700 transition">
               Dúvidas
             </Link>
+
+            {/* 🔗 Novo link para o Google Forms */}
+            <a
+              href="https://forms.gle/seu-link-aqui"
+              target="_blank"
+              rel="noreferrer"
+              className="px-4 py-2 rounded-lg hover:bg-green-700 transition text-green-300 font-semibold"
+            >
+              Formulário
+            </a>
+
             <a
               href="https://instagram.com/alvvezk"
               target="_blank"
@@ -130,6 +141,17 @@ export default function Layout({ children }: LayoutProps) {
             <Link href="/" className="block hover:bg-green-700 py-2 rounded-lg">Início</Link>
             <Link href="/sobre" className="block hover:bg-green-700 py-2 rounded-lg">Sobre Nós</Link>
             <Link href="/duvidas" className="block hover:bg-green-700 py-2 rounded-lg">Dúvidas</Link>
+
+            {/* 🔗 Novo link também no menu mobile */}
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSc6fflCD6OvKp1Sskp8YzvAJ2eic5PsqR37Dso4tb3Ns6HsFA/viewform?usp=dialog"
+              target="_blank"
+              rel="noreferrer"
+              className="block hover:text-green-300 font-semibold"
+            >
+              Formulário
+            </a>
+
             <a href="https://instagram.com/alvvezk" target="_blank" rel="noreferrer" className="block hover:text-pink-400">Instagram</a>
             <a href="mailto:k.alves1427@gmail.com" className="block hover:text-yellow-400">Gmail</a>
             <a href="https://wa.me/5511954610490" target="_blank" rel="noreferrer" className="block hover:text-green-400">WhatsApp</a>
