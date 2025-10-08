@@ -94,7 +94,7 @@ export default function Layout({ children }: LayoutProps) {
 
             {/* 🔗 Novo link para o Google Forms */}
             <a
-              href="https://forms.gle/seu-link-aqui"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSc6fflCD6OvKp1Sskp8YzvAJ2eic5PsqR37Dso4tb3Ns6HsFA/viewform?usp=dialog"
               target="_blank"
               rel="noreferrer"
               className="px-4 py-2 rounded-lg hover:bg-green-700 transition text-green-300 font-semibold"
