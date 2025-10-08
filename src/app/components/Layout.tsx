@@ -24,7 +24,7 @@ const PHRASES = [
   "Pequenas ações, grandes mudanças",
   "Reduzir, Reutilizar, Reciclar",
   "Inovação verde",
-  "top animes : berserk evangelino cowboy bebop death note",
+  "top animes : berserk evangelion attack on titan death note ",
   "feito por KUHAKU.",
 ];
 
@@ -106,13 +106,13 @@ export default function Layout({ children }: LayoutProps) {
               href="https://instagram.com/alvvezk"
               target="_blank"
               rel="noreferrer"
-              className="flex items-center space-x-2 hover:text-green-300 transition"
+              className="px-4 py-2 rounded-lg hover:bg-green-700 transition text-green-300 font-semibold"
             >
               <FaInstagram /> <span>Instagram</span>
             </a>
             <a
               href="mailto:k.alves1427@gmail.com"
-              className="flex items-center space-x-2 hover:text-green-300 transition"
+              className="px-4 py-2 rounded-lg hover:bg-green-700 transition text-green-300 font-semibold"
             >
               <FaEnvelope /> <span>Gmail</span>
             </a>
@@ -120,7 +120,7 @@ export default function Layout({ children }: LayoutProps) {
               href="https://wa.me/5511954610490"
               target="_blank"
               rel="noreferrer"
-              className="flex items-center space-x-2 hover:text-green-300 transition"
+              className="px-4 py-2 rounded-lg hover:bg-green-700 transition text-green-300 font-semibold"
             >
               <FaWhatsapp /> <span>WhatsApp</span>
             </a>
